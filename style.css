@@ -42,9 +42,7 @@ table tbody tr td:last-child {
 	font-weight: bold;
 	width: 300px;
 	height: 100px;
-	position: relative;
-	left: 39%;
-	bottom: 250px;
-	padding-top: 34px;
+	margin: auto;
 	display: none;
+	padding-top: 30px;
 }

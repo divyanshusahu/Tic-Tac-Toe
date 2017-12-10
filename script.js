@@ -114,6 +114,7 @@ function gameOver(a) {
 		blocks[winCombinations[winIndex][i]].style.backgroundColor = (winner == humanPlayer ? "blue" : "red");
 	for (var i=0;i<9;i++)
 		blocks[i].removeEventListener("click", turnClick);
+	gameResult(winner == humanPlayer ? "You Win!" : "You Lose");
 }
 
 function bestSpot() {
@@ -132,7 +133,13 @@ function isTie() {
 			blocks[i].style.backgroundColor = "green";
 			blocks[i].removeEventListener("click", turnClick);
 		}
+		gameResult("Match Tied!!")
 		return true;
 	}
 	return false;
+}
+
+function gameResult(result) {
+	document.querySelector(".resultMessage").style.display = "block";
+	document.querySelector(".resultMessage p").innerText = result;
 }
