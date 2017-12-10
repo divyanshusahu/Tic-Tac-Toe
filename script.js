@@ -118,11 +118,70 @@ function gameOver(a) {
 }
 
 function bestSpot() {
-	return emptyBlocks()[0];
+	return minimax(originalboard, compPlayer).index;
 }
 
 function emptyBlocks() {
 	return originalboard.filter(n => typeof n == 'number');
+}
+
+function minimax(newBoard, player) {
+	var availableBlocks = emptyBlocks();
+	if (checkWin(newBoard, player))
+		return {score:-10};
+	else if (checkWin(newBoard, compPlayer))
+		return {score:10};
+	else if (availableBlocks.length === 0)
+		return {score:0};
+
+	var moves = []
+	for (var i=0; i<availableBlocks.length;i++)
+	{
+		var move = {};
+		move.index = newBoard[availableBlocks[i]];
+		newBoard[availableBlocks[i]] = player;
+		if (player == compPlayer)
+		{
+			var r = minimax(newBoard, humanPlayer);
+			move.score = r.score;
+		}
+		else 
+		{
+			var r = minimax(newBoard, compPlayer);
+			move.score = r.score;
+		}
+
+		newBoard[availableBlocks[i]] = move.index
+		moves.push(move);
+	}
+
+	var bestMove;
+	if (player == compPlayer)
+	{
+		var bestScore = -10000;
+		for (var i=0;i<moves.length;i++)
+		{
+			if (moves[i].score > bestScore)
+			{
+				bestScore = moves[i].score
+				bestMove = i;
+			}
+		}
+	}
+	else
+	{
+		var bestScore = 10000;
+		for (var i=0;i<moves.length;i++)
+		{
+			if (moves[i].score < bestScore)
+			{
+				bestScore = moves[i].score
+				bestMove = i;
+			}
+		}
+	}
+
+	return moves[bestMove];
 }
 
 function isTie() {
