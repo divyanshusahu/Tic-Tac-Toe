@@ -199,6 +199,6 @@ function isTie() {
 }
 
 function gameResult(result) {
-	document.querySelector(".resultMessage").style.display = "block";
+	document.querySelector(".resultMessage").style.display = "inline-block";
 	document.querySelector(".resultMessage p").innerText = result;
 }

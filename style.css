@@ -1,10 +1,20 @@
 body {
 	text-align: center;
-	color: #000;
 }
 
 .top-description {
 	margin-top: 100px;
+	font-size: 28px;
+}
+
+button {
+	background-color: #f00;
+	color: #fff;
+	border: none;
+	padding: 10px;
+	font-size: 16px;
+	cursor: pointer;
+	font-weight: bold;
 }
 
 td {
@@ -17,6 +27,7 @@ td {
 
 table {
 	margin: 50px auto;
+	border-collapse: collapse;
 }
 
 table tbody tr:first-child td {
@@ -44,5 +55,16 @@ table tbody tr td:last-child {
 	height: 100px;
 	margin: auto;
 	display: none;
-	padding-top: 30px;
+}
+
+@media (max-width: 768px) {
+	.top-description {
+		font-size: 20px;
+		margin-top: 0;
+	}
+
+	.resultMessage {
+		height: 50px;
+		padding-bottom: 25px;
+	}
 }
