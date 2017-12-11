@@ -121,13 +121,13 @@ function bestSpot() {
 	return minimax(originalboard, compPlayer).index;
 }
 
-function emptyBlocks() {
-	return originalboard.filter(n => typeof n == 'number');
+function emptyBlocks(board) {
+	return board.filter(n => typeof n == 'number');
 }
 
 function minimax(newBoard, player) {
-	var availableBlocks = emptyBlocks();
-	if (checkWin(newBoard, player))
+	var availableBlocks = emptyBlocks(newBoard);
+	if (checkWin(newBoard, humanPlayer))
 		return {score:-10};
 	else if (checkWin(newBoard, compPlayer))
 		return {score:10};
@@ -185,7 +185,7 @@ function minimax(newBoard, player) {
 }
 
 function isTie() {
-	if (emptyBlocks().length == 0 && gameHasWinner == false)
+	if (emptyBlocks(originalboard).length == 0 && gameHasWinner == false)
 	{
 		for (var i=0;i<9;i++)
 		{
