@@ -1,7 +1,7 @@
 var originalboard = [];
 const humanPlayer = '0';
 const compPlayer = 'X';
-var winCombinations = [
+var winCombinations = [ //coordinates of a winning positions
 	[0,1,2],
 	[3,4,5],
 	[6,7,8],
@@ -39,7 +39,7 @@ function turnClick(s) {
 			turn(bestSpot(), compPlayer);
 	}
 }
-
+//function for recording turns and decide the results
 function turn(s, player) {
 	originalboard[s] = player;
 	document.getElementById(s).innerText = player;
@@ -103,7 +103,7 @@ function isEqual (a,b) {
 	}
 	return true;
 }
-
+//if someone wins
 function gameOver(a) {
 	//console.log(a);
 	//console.log(a['index']);
@@ -116,11 +116,11 @@ function gameOver(a) {
 		blocks[i].removeEventListener("click", turnClick);
 	gameResult(winner == humanPlayer ? "You Win!" : "You Lose");
 }
-
+//to make best move as cpu
 function bestSpot() {
 	return minimax(originalboard, compPlayer).index;
 }
-
+//marks the filled blocks
 function emptyBlocks(board) {
 	return board.filter(n => typeof n == 'number');
 }
@@ -183,7 +183,7 @@ function minimax(newBoard, player) {
 
 	return moves[bestMove];
 }
-
+//to check tie
 function isTie() {
 	if (emptyBlocks(originalboard).length == 0 && gameHasWinner == false)
 	{
@@ -197,7 +197,7 @@ function isTie() {
 	}
 	return false;
 }
-
+//function to show the results
 function gameResult(result) {
 	document.querySelector(".resultMessage").style.display = "inline-block";
 	document.querySelector(".resultMessage p").innerText = result;
